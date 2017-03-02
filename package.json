@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nodemon --exec 'mocha --recursive -R min'",
-     "start": "node index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
