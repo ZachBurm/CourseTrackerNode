@@ -2,9 +2,13 @@
   "name": "courseapp",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "5.9.1"
+  },
   "main": "index.js",
   "scripts": {
-    "test": "nodemon --exec 'mocha --recursive -R min'"
+    "test": "nodemon --exec 'mocha --recursive -R min'",
+     "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,5 +19,18 @@
     "mongoose": "^4.8.4",
     "nodemon": "^1.11.0",
     "supertest": "^3.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZachBurm/CourseTrackerNode.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ]
 }
+
+
+
+ 
