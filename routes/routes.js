@@ -1,10 +1,10 @@
-const DriversController = require('../controllers/temp_controller');
+const StudentsController = require('../controllers/students_controller');
 
 module.exports = (app) => {
 	// Watch for incoming requests of method GET to
 	// the route http://localhost:3050/api
-	app.get('/api', DriversController.greeting);
+	app.get('/api', StudentsController.greeting);
 	
-	app.post('/api/students', DriversController.create);
+	app.post('/api/students', StudentsController.create);
 	
 }

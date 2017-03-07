@@ -1,7 +1,4 @@
 const mongoose = require('mongoose');
-const CourseSchema = require('./course');
-//const MajorSchema = require('./major');
-//const MinorSchema = require('./minor');
 const Schema = mongoose.Schema;
 
 const StudentSchema = new Schema({
@@ -17,11 +14,17 @@ const StudentSchema = new Schema({
 	
 	password: String,
 	standing: Number,
-	//majors: [MajorSchema],
-	//minors: [MinorSchema],
+	majors: [{ 
+		type: Schema.Types.ObjectId,
+		ref: 'focus'
+	}],
+	minors: [{ 
+		type: Schema.Types.ObjectId,
+		ref: 'focus'
+	}],
 	commons:[{ 
 		type: Schema.Types.ObjectId,
-		ref: 'course'
+		ref: 'focus'
 	}]
 	
 	
