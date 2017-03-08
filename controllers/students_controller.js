@@ -17,6 +17,12 @@ module.exports = {
 	fetchAll(req, res) {
 		Student.find({})
 			.then(students => res.send(students));
+	},
+	
+	delete(req, res)  {
+		Student.find({}).remove()
+			.then(student => res.send('success'));
+			
 	}
 	
 };

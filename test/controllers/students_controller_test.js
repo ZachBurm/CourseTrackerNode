@@ -4,11 +4,10 @@ const mongoose = require('mongoose');
 const app = require('../../app');
 
 const Student = mongoose.model('student');
-//const Course = mongoose.model('course');
 
 describe('Students Controller', () => {
 	
-	it('Post to /api/students creates a new student', (done) => {	
+	xit('Post to /api/students creates a new student', (done) => {	
 		Student.count().then( count => {
 			
 			request(app)
@@ -24,7 +23,7 @@ describe('Students Controller', () => {
 		});
 	});	
 	
-	it('GET to /api/students finds all students', (done) => {
+	xit('GET to /api/students finds all students', (done) => {
 		
 		const student = new Student({ name: 'Zach', email:'z@burm.com', password: 'hey' });
 		
@@ -39,6 +38,24 @@ describe('Students Controller', () => {
 				})
 
 				});
+			});
+
+		});
+	});	
+	
+	it('Delete to /api/students deletes all students', (done) => {
+		
+		const student = new Student({ name: 'Zach', email:'z@burm.com', password: 'hey' });
+		
+		student.save().then(() => {
+			Student.count().then( count => {
+				request(app)
+					.delete('/api/students')
+					.end((err, response) => {
+						assert(response.text === 'success');
+						done();
+
+					});
 			});
 
 		});
