@@ -7,7 +7,7 @@ const Student = mongoose.model('student');
 
 describe('Students Controller', () => {
 	
-	xit('Post to /api/students creates a new student', (done) => {	
+	it('Post to /api/students creates a new student', (done) => {	
 		Student.count().then( count => {
 			
 			request(app)
@@ -23,7 +23,7 @@ describe('Students Controller', () => {
 		});
 	});	
 	
-	xit('GET to /api/students finds all students', (done) => {
+	it('GET to /api/students finds all students', (done) => {
 		
 		const student = new Student({ name: 'Zach', email:'z@burm.com', password: 'hey' });
 		
