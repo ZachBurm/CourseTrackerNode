@@ -1,5 +1,4 @@
 const Student = require('../models/student');
-//const Course = require('../models/course');
 
 
 module.exports = {
@@ -13,6 +12,11 @@ module.exports = {
 		Student.create(studentProps)
 			.then(student => res.send(student));
 		
+	},
+	
+	fetchAll(req, res) {
+		Student.find({})
+			.then(students => res.send(students));
 	}
 	
 };

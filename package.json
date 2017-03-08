@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "nodemon --exec 'mocha --recursive -R min'",
+    "test": "NODE_ENV=test nodemon --exec 'mocha --recursive -R min'",
     "start": "node index.js"
   },
   "author": "",

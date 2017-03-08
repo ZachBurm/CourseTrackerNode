@@ -23,4 +23,28 @@ describe('Students Controller', () => {
 			
 		});
 	});	
+	
+	it('GET to /api/students finds all students', (done) => {
+		
+		const student = new Student({ name: 'Zach', email:'z@burm.com', password: 'hey' });
+		
+		student.save().then(() => {
+			Student.count().then( count => {
+				request(app)
+				.get('/api/students')
+				.end((err, response) => {
+					Student.count().then(newCount => {
+					assert(response.body.length === newCount);
+					done();
+				})
+
+				});
+			});
+
+		});
+	});	
+	
+	
+	
+	
 });
