@@ -5,7 +5,7 @@ const CourseSchema = new Schema({
 	
 	name: String,
 	courseNum: Number,
-	numHours: Number
+	numHours: Number,
 	enrolledStudents: [{ 
 		type: Schema.Types.ObjectId,
 		ref: 'student'
@@ -23,4 +23,4 @@ const CourseSchema = new Schema({
 
 const Course = mongoose.model('course', CourseSchema);
 
-module.exports = CourseSchema;
+module.exports = Course;
