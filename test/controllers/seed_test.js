@@ -44,6 +44,16 @@ describe('Students Controller', () => {
 			});	
 	});
 	
+	xit('DELETE to /api/dropDB/pass deletes all', (done) => {	
+		request(app)
+			.delete('/api/dropDB/zach')
+			.end((err, response) => {
+				console.log(response.body);
+				assert(response.body === 'done');
+				done();
+			});	
+	});
+	
 	
 	
 });
