@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Student = require('../models/student');
 const Focus = require('../models/focus');
 const Course = require('../models/course');
@@ -219,6 +220,20 @@ module.exports = {
 			.then(final => res.send(final))
 			.catch(next);
 
+	}
+	
+	dropDB(req, res, next) {
+		if(req.params.pass === 'zach') {
+			const {students} = mongoose.connection.collections;
+			const {focus} = mongoose.connection.collections;
+			const {courses} = mongoose.connection.collections;
+			Promise.all([ students.drop(), focus.drop(), courses.drop() ])
+				.then(() => {
+					res.send('Dropped');
+					done();
+				})
+				.catch(() => done());
+			}
 	}
 
 };

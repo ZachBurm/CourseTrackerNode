@@ -10,6 +10,8 @@ module.exports = (app) => {
 			
 	app.post('/api/students/seedDB', Seed.createDB);
 	
+	app.delete('/api/dropDB/:pass', Seed.dropDB);
+	
 	//get routes for queries
 	
 	app.get('/api/allMajors', Queries.getAllMajors);
