@@ -49,7 +49,7 @@ describe('Course Controller', () => {
 	});
 	
 	
-	xit('GET to /api/course/:id a course', (done) => {
+	it('GET to /api/course/:id a course', (done) => {
 		
 		const course = new Course({ name: 'Intro to Comp' , courseNum: 1000, numHours: 4 });
 		
@@ -57,7 +57,7 @@ describe('Course Controller', () => {
 			request(app)
 			.get(`/api/course/${course._id}`)
 			.end((err, response) => {
-				assert(response.body.courseNum === course.courseNum.toString());
+				assert(response.body.courseNum === course.courseNum);
 				done();
 			});
 
@@ -65,15 +65,15 @@ describe('Course Controller', () => {
 		});
 	});	
 	
-	xit('DELETE to /api/students/id deletes all students', (done) => {
+	it('DELETE to /api/course/id deletes a course', (done) => {
 		
-		const student = new Student({ name: 'Zach', email:'z@burm.com', password: 'hey' });
+		const course = new Course({ name: 'Intro to Comp' , courseNum: 1000, numHours: 4 });
 		
-		student.save().then(() => {
+		course.save().then(() => {
 			request(app)
-				.delete(`/api/students/${student._id}`)
+				.delete(`/api/course/${course._id}`)
 				.end((err, response) => {
-					Student.count().then( newCount => {
+					Course.count().then( newCount => {
 						assert(newCount === 0);
 						done();
 					});

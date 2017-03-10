@@ -9,10 +9,6 @@ const Course = mongoose.model('course');
 
 describe('Students Controller', () => {
 	
-	beforeEach(() => {
-		
-	});
-	
 	it('POST to /api/students creates a new student', (done) => {	
 		Student.count().then( count => {
 			
@@ -83,28 +79,6 @@ describe('Students Controller', () => {
 
 		});
 	});	
-	
-	
-	
-	xit('GET to api/students/getMajor/:id gets the majors of a student', (done) => {
-		const student = new Student({ name: 'Zach', email: 'zb@burm.com', password: 'other' });
-		const major = new Focus({ name: 'Computer Science', numHours: 256, numMinors: 2, abbrv: 'COMP', type: 'Major' });
-
-		Promise.all([student.save(), major.save()])	
-		.then(() => {
-			student.majors.push(major);
-			student.save()
-				.then(() => {
-					request(app)
-					.get(`/api/students/getMajor/${student._id}`)
-					.end((err, response) => {
-						done();
-					});
-				});
-		});
-
-				
-	});
 	
 	
 	

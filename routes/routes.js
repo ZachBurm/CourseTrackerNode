@@ -27,7 +27,7 @@ module.exports = (app) => {
 	app.get('/api/course/:id', CourseController.get);
 	
 	app.delete('/api/course/:id', CourseController.delete);
-/*	
+	
 	//focus - create edit and delete
 	
 	app.post('/api/focus', FocusController.create);
@@ -38,7 +38,6 @@ module.exports = (app) => {
 	
 	app.delete('/api/focus/:id', FocusController.delete);
 	
-*/
 	//student - create, edit and delete
 	
 	app.post('/api/students', StudentsController.create);

@@ -6,7 +6,7 @@ module.exports = {
 		const courseProps = req.body;
 		
 		Course.create(courseProps)
-			.then(course => res.send(coruse))
+			.then(course => res.send(course))
 			.catch(next);
 		
 	},
