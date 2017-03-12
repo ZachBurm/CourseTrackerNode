@@ -1,5 +1,5 @@
 const Course = require('../models/course');
-
+const Student = require('../models/student');
 
 module.exports = {
 	create(req, res, next) {
@@ -44,10 +44,14 @@ module.exports = {
 		Course.findById(courseID)
 			.populate('enrolledStudents')
 			.then(course => {
-				course.enrolledStudents.push({ _id: studentID })
-				course.save()
-					.then(ncourse => res.send(ncourse))
-					.catch(next)
+				Student.findById(studentID)
+					.then(student => {
+						course.enrolledStudents.push(student)
+						course.save()
+							.then(ncourse => res.send(ncourse))
+							.catch(next)
+					})
+				
 			})
 	},
 
