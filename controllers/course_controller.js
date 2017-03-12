@@ -31,7 +31,7 @@ module.exports = {
 			.then(course => {
 				Student.findById(studentID)
 					.then(student => {
-						course.enrolledStudents.pull(student)
+						course.enrolledStudents.remove(student)
 						course.save()
 							.then(nCourse => res.send(nCourse))
 							.catch(next)
