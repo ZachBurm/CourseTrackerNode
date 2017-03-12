@@ -55,6 +55,7 @@ module.exports = {
 	addStudent(req, res, next) {
 		const studentID = req.params.sId;
 		const courseID = req.params.cId;
+		const type = req.params.type
 		
 		Course.findById(courseID)
 			.populate('enrolledStudents')

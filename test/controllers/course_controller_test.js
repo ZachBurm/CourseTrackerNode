@@ -49,18 +49,18 @@ describe('Course Controller', () => {
 		
 	});
 	
-	xit('DELETE to /api/course/:cId/enrolled/:sId removes enrolled student', (done) => {
+	it('DELETE to /api/course/:cId/:type/:sId removes student', (done) => {
 		
 		const course = new Course({ name: 'Intro to Comp' , courseNum: 1000, numHours: 4 });
 		
 		const student = new Student({ name: 'Zach', email: 'zb@burm.com', password: 'other' });
 		
-		course.enrolledStudents.push(student);
+		course.completedStudents.push(student);
 
 		Promise.all([ course.save(), student.save() ])
 			.then(() => {
 			request(app)
-				.delete(`/api/course/${course._id}/enrolled/${student._id}`)
+				.delete(`/api/course/${course._id}/completedStudents/${student._id}`)
 				.end((err, response) => {
 					assert(response.body.enrolledStudents.length === 0);
 					done();
@@ -69,7 +69,7 @@ describe('Course Controller', () => {
 		
 	});
 	
-	xit('PUT to /api/course/:cId/enrolled/:sId add enrolled student', (done) => {
+	it('PUT to /api/course/:cId/:type/:sId add student', (done) => {
 		
 		const course = new Course({ name: 'Intro to Comp' , courseNum: 1000, numHours: 4 });
 		
@@ -78,9 +78,9 @@ describe('Course Controller', () => {
 		Promise.all([ course.save(), student.save() ])
 			.then(() => {
 			request(app)
-				.put(`/api/course/${course._id}/enrolled/${student._id}`)
+				.put(`/api/course/${course._id}/completedStudents/${student._id}`)
 				.end((err, response) => {
-					assert(response.body.enrolledStudents.length === 1);
+					assert(response.body.completedStudents.length === 1);
 					done();
 				});
 		});
