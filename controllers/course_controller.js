@@ -26,7 +26,7 @@ module.exports = {
 		const studentID = req.params.sId;
 		const courseID = req.params.cId;
 		
-		Course.update({ _id: ObjectId(courseID)}, { $pullAll: {_id: ObjectId(studentID) } })
+		Course.update({ _id: ObjectId(courseID)}, { $pullAll: { enrolledStudents: [studentID] } })
 			.then(course => res.send(course))
 			.catch(next)		
 		
