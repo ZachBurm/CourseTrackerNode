@@ -21,6 +21,22 @@ module.exports = {
 			.catch(next);
 	},
 	
+	//'/api/course/:cId/enrolled/:sId'
+	removeEnrolled(req, res, next) {
+		const studentID = req.params.sId;
+		const courseID = req.params.cId;
+		
+		Course.findById(courseID)
+			.then(course => {
+				course.enrolledStudents.pull({ _id: studentID })
+				course.save()
+					.then(nCourse => res.send(nCourse))
+					.catch(next)
+			})
+		
+		
+	},
+	
 	get(req, res, next) {
 		
 		Course.findById(req.params.id)

@@ -28,6 +28,8 @@ module.exports = (app) => {
 	
 	app.put('/api/course/:id', CourseController.edit);
 	
+	app.put('/api/course/:cId/enrolled/:sId', CourseController.removeEnrolled);
+	
 	app.get('/api/course/:id', CourseController.get);
 	
 	app.delete('/api/course/:id', CourseController.delete);
