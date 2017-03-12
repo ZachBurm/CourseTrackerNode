@@ -1,4 +1,5 @@
 const Course = require('../models/course');
+const Student = require('../models/student');
 
 
 module.exports = {
