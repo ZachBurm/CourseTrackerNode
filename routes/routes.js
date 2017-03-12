@@ -20,6 +20,8 @@ module.exports = (app) => {
 	
 	app.get('/api/courses/major/:id', Queries.getCoursesForMajor);
 	
+	app.get('/api/courses/minor/:id', Queries.getCoursesForMinor);
+	
 	//course - create, edit and delete
 	
 	app.post('/api/course', CourseController.create);
