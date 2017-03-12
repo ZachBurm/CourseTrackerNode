@@ -1,4 +1,5 @@
 const Course = require('../models/course');
+const Student = require('../models/student');
 
 
 module.exports = {
@@ -28,10 +29,13 @@ module.exports = {
 		
 		Course.findById(courseID)
 			.then(course => {
-				course.enrolledStudents.findByIdAndRemove({ _id: studentID })
-					.then(nCourse => res.send(nCourse))
-					.catch(next)
-
+				Student.findById(studentID)
+					.then(student => {
+						course.enrolledStudents.remove(student)
+						course.save()
+							.then(nCourse => res.send(nCourse))
+							.catch(next)
+					})
 				
 				
 			})
