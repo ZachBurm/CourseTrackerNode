@@ -1,5 +1,4 @@
 const Course = require('../models/course');
-const Student = require('../models/student');
 
 
 module.exports = {
@@ -28,19 +27,10 @@ module.exports = {
 		const courseID = req.params.cId;
 		
 		Course.findById(courseID)
+			.populate('enrolledStudents')
 			.then(course => {
-				Student.findById(studentID)
-					.then(student => {
-						course.enrolledStudents.pull(student)
-						course.save()
-							.then(nCourse => res.send(nCourse))
-							.catch(next)
-					})
-				
-				
+				course.enrolledStudents.pull({ _id: studentID })
 			})
-		
-		
 	},
 	
 	get(req, res, next) {
