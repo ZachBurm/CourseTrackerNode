@@ -43,12 +43,12 @@ describe('Students Controller', () => {
 				done();
 			});	
 	});
-	
+		
 	xit('DELETE to /api/dropDB/pass deletes all', (done) => {	
 		request(app)
 			.delete('/api/dropDB/zach')
 			.end((err, response) => {
-				console.log(response.body);
+				console.log(response);
 				assert(response.body === 'done');
 				done();
 			});	

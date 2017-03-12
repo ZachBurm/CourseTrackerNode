@@ -58,6 +58,17 @@ module.exports = {
 			.catch(next)
 	},
 	
+	getCoursesForMajor(req, res, next) {
+		Focus.findById(req.params.id)
+			.populate('cores')
+			.populate('electives')
+			.then(major => {
+				res.send({ cores: major.cores, electives: major.electives})
+			})
+			.catch(next)
+		
+	},
+	
 	//course from ID
 	
 	getCourseFromId(req, res, next) {
