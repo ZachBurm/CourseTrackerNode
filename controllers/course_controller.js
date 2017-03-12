@@ -36,6 +36,22 @@ module.exports = {
 			})
 	},
 	
+	//'/api/course/:cId/enrolled/:sId'
+	addEnrolled(req, res, next) {
+		const studentID = req.params.sId;
+		const courseID = req.params.cId;
+		
+		Course.findById(courseID)
+			.populate('enrolledStudents')
+			.then(course => {
+				course.enrolledStudents.push({ _id: studentID })
+				course.save()
+					.then(ncourse => res.send(ncourse))
+					.catch(next)
+			})
+	},
+
+	
 	get(req, res, next) {
 		
 		Course.findById(req.params.id)

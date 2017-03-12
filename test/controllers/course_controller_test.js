@@ -49,7 +49,7 @@ describe('Course Controller', () => {
 		
 	});
 	
-	it('PUT to /api/course/:cId/enrolled/:sId removes enrolled student', (done) => {
+	it('DELETE to /api/course/:cId/enrolled/:sId removes enrolled student', (done) => {
 		
 		const course = new Course({ name: 'Intro to Comp' , courseNum: 1000, numHours: 4 });
 		
@@ -60,9 +60,27 @@ describe('Course Controller', () => {
 		Promise.all([ course.save(), student.save() ])
 			.then(() => {
 			request(app)
-				.put(`/api/course/${course._id}/enrolled/${student._id}`)
+				.delete(`/api/course/${course._id}/enrolled/${student._id}`)
 				.end((err, response) => {
 					assert(response.body.enrolledStudents.length === 0);
+					done();
+				});
+		});
+		
+	});
+	
+	it('PUT to /api/course/:cId/enrolled/:sId add enrolled student', (done) => {
+		
+		const course = new Course({ name: 'Intro to Comp' , courseNum: 1000, numHours: 4 });
+		
+		const student = new Student({ name: 'Zach', email: 'zb@burm.com', password: 'other' });
+
+		Promise.all([ course.save(), student.save() ])
+			.then(() => {
+			request(app)
+				.put(`/api/course/${course._id}/enrolled/${student._id}`)
+				.end((err, response) => {
+					assert(response.body.enrolledStudents.length === 1);
 					done();
 				});
 		});

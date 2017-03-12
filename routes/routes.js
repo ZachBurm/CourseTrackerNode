@@ -28,7 +28,9 @@ module.exports = (app) => {
 	
 	app.put('/api/course/:id', CourseController.edit);
 	
-	app.put('/api/course/:cId/enrolled/:sId', CourseController.removeEnrolled);
+	app.put('/api/course/:cId/enrolled/:sId', CourseController.addEnrolled);
+	
+	app.delete('/api/course/:cId/enrolled/:sId', CourseController.removeEnrolled);
 	
 	app.get('/api/course/:id', CourseController.get);
 	
