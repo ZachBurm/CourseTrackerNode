@@ -33,6 +33,7 @@ describe('Course Controller', () => {
 	it('PUT to /api/course/id edits a courses properties', (done) => {
 		
 		const course = new Course({ name: 'Intro to Comp' , courseNum: 1000, numHours: 4 });
+			
 		course.save().then(() => {
 			request(app)
 				.put(`/api/course/${course._id}`)
@@ -43,6 +44,26 @@ describe('Course Controller', () => {
 							assert(course.courseNum === 2012);
 							done();
 						});
+				});
+		});
+		
+	});
+	
+	it('PUT to /api/course/:cId/enrolled/:sId removes enrolled student', (done) => {
+		
+		const course = new Course({ name: 'Intro to Comp' , courseNum: 1000, numHours: 4 });
+		
+		const student = new Student({ name: 'Zach', email: 'zb@burm.com', password: 'other' });
+		
+		course.enrolledStudents.push(student);
+
+		Promise.all([ course.save(), student.save() ])
+			.then(() => {
+			request(app)
+				.put(`/api/course/${course._id}/enrolled/${student._id}`)
+				.end((err, response) => {
+					assert(response.body.enrolledStudents.length === 0);
+					done();
 				});
 		});
 		

@@ -30,6 +30,9 @@ module.exports = {
 			.populate('enrolledStudents')
 			.then(course => {
 				course.enrolledStudents.pull({ _id: studentID })
+				course.save()
+					.then(ncourse => res.send(ncourse))
+					.catch(next)
 			})
 	},
 	
