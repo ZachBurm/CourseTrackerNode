@@ -49,7 +49,7 @@ describe('Course Controller', () => {
 		
 	});
 	
-	it('DELETE to /api/course/:cId/enrolled/:sId removes enrolled student', (done) => {
+	xit('DELETE to /api/course/:cId/enrolled/:sId removes enrolled student', (done) => {
 		
 		const course = new Course({ name: 'Intro to Comp' , courseNum: 1000, numHours: 4 });
 		
@@ -69,7 +69,7 @@ describe('Course Controller', () => {
 		
 	});
 	
-	it('PUT to /api/course/:cId/enrolled/:sId add enrolled student', (done) => {
+	xit('PUT to /api/course/:cId/enrolled/:sId add enrolled student', (done) => {
 		
 		const course = new Course({ name: 'Intro to Comp' , courseNum: 1000, numHours: 4 });
 		

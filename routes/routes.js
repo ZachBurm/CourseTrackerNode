@@ -28,9 +28,10 @@ module.exports = (app) => {
 	
 	app.put('/api/course/:id', CourseController.edit);
 	
-	app.put('/api/course/:cId/enrolled/:sId', CourseController.addEnrolled);
+		// Student Status
+		app.put('/api/course/:cId/:type/:sId', CourseController.addStudent);
 	
-	app.delete('/api/course/:cId/enrolled/:sId', CourseController.removeEnrolled);
+		app.delete('/api/course/:cId/:type/:sId', CourseController.removeStudent);
 	
 	app.get('/api/course/:id', CourseController.get);
 	
