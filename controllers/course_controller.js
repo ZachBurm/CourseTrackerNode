@@ -28,10 +28,15 @@ module.exports = {
 		
 		Course.findById(courseID)
 			.then(course => {
-				course.enrolledStudents.remove(studentID)
-				course.save()
-					.then(nCourse => res.send(nCourse))
-					.catch(next)
+				Student.findById(studentID)
+					.then(student => {
+						course.enrolledStudents.pull(student)
+						course.save()
+							.then(nCourse => res.send(nCourse))
+							.catch(next)
+					})
+				
+				
 			})
 		
 		
