@@ -38,6 +38,14 @@ module.exports = {
 			.catch(next);
 	},
 	
+	//All students
+	
+	getAllStudents(req, res, next) {
+		Student.find({})	
+			.then(students => res.send(students))
+			.catch(next);
+	},
+	
 	//Major
 	getMajorForStudent(req, res, next) {
 		Focus.findById(req.params.id)

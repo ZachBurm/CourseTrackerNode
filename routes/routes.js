@@ -18,6 +18,8 @@ module.exports = (app) => {
 	
 	app.get('/api/allCourses', Queries.getAllCourses);
 	
+	app.get('/api/allStudents', Queries.getAllStudents);
+	
 	app.get('/api/courses/major/:id', Queries.getCoursesForMajor);
 	
 	app.get('/api/courses/minor/:id', Queries.getCoursesForMinor);
